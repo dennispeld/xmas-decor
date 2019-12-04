@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,9 +12,6 @@ use App\Helper\ShapeHelper;
 
 class XmasCommand extends Command
 {
-    /**
-     * Configure the command line command
-     */
     public function configure(): void
     {
         $this->setName('xmas')
@@ -26,19 +24,18 @@ class XmasCommand extends Command
                 'Set the size of the shape (S, M, L).');
     }
 
-    /**
-     * Execute the command
-     *
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $shapeName = $input->getArgument('shape');
         $shapeSize = $input->getOption('size');
 
-        $shape = ShapeHelper::initShape($shapeName, $shapeSize);
+        try {
+            $shape = ShapeHelper::initShape($shapeName, $shapeSize);
+        } catch (Exception $e) {
+            $output->writeln('The shape could not be initialized.');
+
+            return 0;
+        }
 
         if (!$shape) {
             $output->writeln("The shape '$shapeName' doesn't exist");

@@ -2,15 +2,10 @@
 
 namespace App\Shapes;
 
+use App\Helper\ShapeHelper;
 
 class Star implements Shape
 {
-    private const SIZE = [
-        'S' => 5,
-        'M' => 7,
-        'L' => 11
-    ];
-
     private string $sizeLabel;
 
     public function setSize($sizeLabel): void
@@ -24,7 +19,7 @@ class Star implements Shape
 
         $pattern = $this->getPattern();
         $linesInPattern = count($pattern);
-        $middleLine = ceil(self::SIZE[$this->sizeLabel] / 2);
+        $middleLine = ceil(ShapeHelper::SIZE[$this->sizeLabel] / 2);
 
         // get through each line in the pattern array
         for ($line = 1; $line <= $linesInPattern; $line ++) {
@@ -34,7 +29,7 @@ class Star implements Shape
             }
 
             // extra '+' on the sides of each shape's middle line
-            $extraHorizon = $line === (int) $middleLine ? '+' : ' ';
+            $extraHorizon = ($line === (int) $middleLine) ? '+' : ' ';
 
             // extra '+' on the top and bottom of the shape, otherwise its 'X' to fill the shape
             $fill = ($line === 1 || $line === 11) ? '+' : 'X';
