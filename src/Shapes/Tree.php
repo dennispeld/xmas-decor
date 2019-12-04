@@ -16,7 +16,7 @@ class Tree implements Shape
     {
         return [
             '==========================================',
-            'Shape: TREE',
+            'Shape: STAR',
             'Size: ' . $this->size
         ];
     }
