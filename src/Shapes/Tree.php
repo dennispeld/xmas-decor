@@ -2,8 +2,6 @@
 
 namespace App\Shapes;
 
-use App\Helper\ShapeHelper;
-
 class Tree implements Shape
 {
     private string $sizeLabel;
