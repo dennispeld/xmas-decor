@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Xmas Shapes</h1>
+
+    {% block content %}
+        <p>Drawing a <strong>{{ shapeName }}</strong>, size <strong>{{ shapeSize }}</strong>.</p>
+        <p>{{ shape|raw|nl2br }}</p>
+    {% endblock %}
+{% endblock %}
