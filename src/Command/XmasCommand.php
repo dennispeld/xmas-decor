@@ -2,8 +2,8 @@
 
 namespace App\Command;
 
-use App\Helper\DrawHelper;
-use App\Helper\ShapeHelper;
+use App\Helper\ShapeDrawer;
+use App\Helper\ShapeBuilder;
 use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -32,7 +32,7 @@ class XmasCommand extends Command
         $shapeSize = strtoupper($shapeSize);
 
         try {
-            $shape = ShapeHelper::getShape($shapeName);
+            $shape = ShapeBuilder::initShape($shapeName);
         } catch (Exception $e) {
             $output->writeln('The shape could not be initialized.' . $e->getMessage() . $e->getTrace());
 
@@ -45,7 +45,7 @@ class XmasCommand extends Command
             return 0;
         }
 
-        $drawing = DrawHelper::draw($shape, $shapeSize);
+        $drawing = ShapeDrawer::draw($shape, $shapeSize);
 
         $output->writeln($drawing);
 

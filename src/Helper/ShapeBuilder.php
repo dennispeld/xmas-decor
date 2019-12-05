@@ -8,7 +8,7 @@ use App\Shapes\Star;
 use App\Shapes\Tree;
 use Exception;
 
-class ShapeHelper
+class ShapeBuilder
 {
     public const SIZE = [
         'S' => 5,
@@ -17,13 +17,13 @@ class ShapeHelper
     ];
 
     /**
-     * Create a shape by name
+     * Initialize a shape
      *
      * @param $shapeName
      * @return Pattern|null
      * @throws Exception
      */
-    public static function getShape($shapeName): ?Pattern
+    public static function initShape($shapeName): ?Pattern
     {
         switch ($shapeName) {
             case 'star':

@@ -5,9 +5,11 @@ namespace App\Helper;
 use App\Shapes\Pattern;
 use Exception;
 
-class DrawHelper
+class ShapeDrawer
 {
     /**
+     * Draw a shape according to its size
+     *
      * @param Pattern $shape
      * @param string $size
      * @return array
@@ -16,7 +18,7 @@ class DrawHelper
     public static function draw($shape, $size): array
     {
         $drawing = [];
-        $sizes = array_keys(ShapeHelper::SIZE);
+        $sizes = array_keys(ShapeBuilder::SIZE);
 
         // if the shape size was not specified or it is not within acceptable sizes, select one randomly
         if (!$size || !in_array($size, $sizes, true)) {
