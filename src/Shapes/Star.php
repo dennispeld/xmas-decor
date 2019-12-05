@@ -2,7 +2,7 @@
 
 namespace App\Shapes;
 
-use App\Helper\ShapeHelper;
+use App\Helper\DrawHelper;
 
 class Star implements Shape
 {
@@ -18,47 +18,57 @@ class Star implements Shape
         $drawing = [];
 
         $pattern = $this->getPattern();
-        $linesInPattern = count($pattern);
-        $middleLine = ceil(ShapeHelper::SIZE[$this->sizeLabel] / 2);
 
         // get through each line in the pattern array
-        for ($line = 1; $line <= $linesInPattern; $line ++) {
-            // if size of the shape is not specified in the patter line, move to the next line
-            if (strpos($pattern[$line]['sizes'], $this->sizeLabel) === false) {
-                continue;
-            }
-
-            // extra '+' on the sides of each shape's middle line
-            $extraHorizon = ($line === (int) $middleLine) ? '+' : ' ';
-
-            // extra '+' on the top and bottom of the shape, otherwise its 'X' to fill the shape
-            $fill = ($line === 1 || $line === 11) ? '+' : 'X';
-
-            $drawLine = str_repeat(' ', $pattern[$line]['spaces'])
-                . $extraHorizon . str_repeat($fill, $pattern[$line]['fillings']) . $extraHorizon
-                . str_repeat(' ', $pattern[$line]['spaces']);
-
-            $drawing[] = $drawLine;
+        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
+            $drawing[] = DrawHelper::drawLine($pattern[$line]);
         }
 
         return $drawing;
     }
 
+    /**
+     * Set up and retrieve a pattern for each size
+     *
+     * @return array
+     */
     public function getPattern(): array
     {
-        // each line of patter consists of number of spaces, number of fillings and the applicable sizes
-        return [
-            1 => ['spaces' => 8, 'fillings' => 1, 'sizes' => 'SML'],
-            2 => ['spaces' => 8, 'fillings' => 1, 'sizes' => 'SML'],
-            3 => ['spaces' => 6, 'fillings' => 5, 'sizes' => 'SML'],
-            4 => ['spaces' => 4, 'fillings' => 9, 'sizes' => 'ML'],
-            5 => ['spaces' => 2, 'fillings' => 13, 'sizes' => 'L'],
-            6 => ['spaces' => 0, 'fillings' => 17, 'sizes' => 'L'],
-            7 => ['spaces' => 2, 'fillings' => 13, 'sizes' => 'L'],
-            8 => ['spaces' => 4, 'fillings' => 9, 'sizes' => 'L'],
-            9 => ['spaces' => 6, 'fillings' => 5, 'sizes' => 'ML'],
-            10 => ['spaces' => 8, 'fillings' => 1, 'sizes' => 'SML'],
-            11 => ['spaces' => 8, 'fillings' => 1, 'sizes' => 'SML'],
-        ];
+        switch ($this->sizeLabel) {
+            case 'S':
+                return [
+                    1 => [[' ' => 3], ['+' => 1]],
+                    2 => [[' ' => 3], ['X' => 1]],
+                    3 => [['+' => 1], ['X' => 5], ['+' => 1]],
+                    4 => [[' ' => 3], ['X' => 1]],
+                    5 => [[' ' => 3], ['+' => 1]],
+                ];
+            case 'M':
+                return [
+                    1 => [[' ' => 5], ['+' => 1]],
+                    2 => [[' ' => 5], ['X' => 1]],
+                    3 => [[' ' => 3], ['X' => 5]],
+                    4 => [['+' => 1], ['X' => 9], ['+' => 1]],
+                    5 => [[' ' => 3], ['X' => 5]],
+                    6 => [[' ' => 5], ['X' => 1]],
+                    7 => [[' ' => 5], ['+' => 1]],
+                ];
+            case 'L':
+                return [
+                    1 => [[' ' => 8], ['+' => 1]],
+                    2 => [[' ' => 8], ['X' => 1]],
+                    3 => [[' ' => 7], ['X' => 3]],
+                    4 => [[' ' => 5], ['X' => 7]],
+                    5 => [[' ' => 3], ['X' => 11]],
+                    6 => [['+' => 1], ['X' => 15], ['+' => 1]],
+                    7 => [[' ' => 3], ['X' => 11]],
+                    8 => [[' ' => 5], ['X' => 7]],
+                    9 => [[' ' => 7], ['X' => 3]],
+                    10 => [[' ' => 8], ['X' => 1]],
+                    11 => [[' ' => 8], ['+' => 1]],
+                ];
+            default:
+                return [];
+        }
     }
 }

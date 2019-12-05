@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Shapes\Notes;
 use App\Shapes\Shape;
 use App\Shapes\Star;
 use App\Shapes\Tree;
@@ -9,7 +10,6 @@ use Exception;
 
 class ShapeHelper
 {
-    // acceptable sizes and number of lines
     public const SIZE = [
         'S' => 5,
         'M' => 7,
@@ -29,6 +29,8 @@ class ShapeHelper
                 return new Star();
             case 'tree':
                 return new Tree();
+            case 'notes':
+                return new Notes();
             default:
                 return null;
         }
