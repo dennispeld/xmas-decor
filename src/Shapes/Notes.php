@@ -2,34 +2,17 @@
 
 namespace App\Shapes;
 
-use App\Helper\DrawHelper;
-
-class Notes implements Shape
+class Notes implements Pattern
 {
-    private string $sizeLabel;
-
-    public function setSize($sizeLabel): void
+    /**
+     * Get the pattern of Notes shape
+     *
+     * @param string $size
+     * @return array
+     */
+    public function get($size): array
     {
-        $this->sizeLabel = $sizeLabel;
-    }
-
-    public function draw(): array
-    {
-        $drawing = [];
-
-        $pattern = $this->getPattern();
-
-        // get through each line in the pattern array
-        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
-            $drawing[] = DrawHelper::drawLine($pattern[$line]);
-        }
-
-        return $drawing;
-    }
-
-    public function getPattern(): array
-    {
-        switch ($this->sizeLabel) {
+        switch ($size) {
             case 'S':
             case 'M':
             case 'L':
@@ -45,8 +28,6 @@ class Notes implements Shape
                     9 => [['X' => 4], [' ' => 3], ['X' => 2], [' ' => 1]],
                     10 => [[' ' => 1], ['X' => 2], [' ' => 7]],
                 ];
-            default:
-                return [];
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Helper\DrawHelper;
 use App\Helper\ShapeHelper;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +20,14 @@ class XmasController extends AbstractController
      */
     public function getXmasShape($shapeName, $shapeSize): Response
     {
-        $shape = ShapeHelper::getShape($shapeName, $shapeSize);
+        $shape = ShapeHelper::getShape($shapeName);
         $sizes = array_keys(ShapeHelper::SIZE);
+        $shapeSize = strtoupper($shapeSize);
 
         if (!$shape) {
             $drawing = "The shape '$shapeName' doesn't exist";
         } else {
-            $drawing = implode("\r\n", $shape->draw());
+            $drawing = implode("\r\n", DrawHelper::draw($shape, $shapeSize));
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 

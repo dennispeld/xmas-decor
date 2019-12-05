@@ -2,39 +2,17 @@
 
 namespace App\Shapes;
 
-use App\Helper\DrawHelper;
-
-class Star implements Shape
+class Star implements Pattern
 {
-    private string $sizeLabel;
-
-    public function setSize($sizeLabel): void
-    {
-        $this->sizeLabel = $sizeLabel;
-    }
-
-    public function draw(): array
-    {
-        $drawing = [];
-
-        $pattern = $this->getPattern();
-
-        // get through each line in the pattern array
-        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
-            $drawing[] = DrawHelper::drawLine($pattern[$line]);
-        }
-
-        return $drawing;
-    }
-
     /**
-     * Set up and retrieve a pattern for each size
+     * Get the pattern of Star shape
      *
+     * @param string $size
      * @return array
      */
-    public function getPattern(): array
+    public function get($size): array
     {
-        switch ($this->sizeLabel) {
+        switch ($size) {
             case 'S':
                 return [
                     1 => [[' ' => 3], ['+' => 1]],
@@ -67,8 +45,6 @@ class Star implements Shape
                     10 => [[' ' => 8], ['X' => 1]],
                     11 => [[' ' => 8], ['+' => 1]],
                 ];
-            default:
-                return [];
         }
     }
 }

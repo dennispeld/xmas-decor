@@ -2,39 +2,17 @@
 
 namespace App\Shapes;
 
-use App\Helper\DrawHelper;
-
-class Tree implements Shape
+class Tree implements Pattern
 {
-    private string $sizeLabel;
-
-    public function setSize($sizeLabel): void
-    {
-        $this->sizeLabel = $sizeLabel;
-    }
-
-    public function draw(): array
-    {
-        $drawing = [];
-
-        $pattern = $this->getPattern();
-
-        // get through each line in the pattern array
-        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
-            $drawing[] = DrawHelper::drawLine($pattern[$line]);
-        }
-
-        return $drawing;
-    }
-
     /**
-     * In the pattern for each line we specify how many spaces and/or characters needs to be printed
+     * Get the pattern of Tree shape
      *
+     * @param string $size
      * @return array
      */
-    public function getPattern(): array
+    public function get($size): array
     {
-        switch ($this->sizeLabel) {
+        switch ($size) {
             case 'S':
                 return [
                     1 => [[' ' => 3], ['+' => 1]],
@@ -67,8 +45,6 @@ class Tree implements Shape
                     10 => [[' ' => 1], ['X' => 17]],
                     11 => [['X' => 19]],
                 ];
-            default:
-                return [];
         }
     }
 }

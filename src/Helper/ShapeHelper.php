@@ -3,7 +3,7 @@
 namespace App\Helper;
 
 use App\Shapes\Notes;
-use App\Shapes\Shape;
+use App\Shapes\Pattern;
 use App\Shapes\Star;
 use App\Shapes\Tree;
 use Exception;
@@ -17,12 +17,13 @@ class ShapeHelper
     ];
 
     /**
-     * Init the shape by name
+     * Create a shape by name
      *
      * @param $shapeName
-     * @return Shape|null
+     * @return Pattern|null
+     * @throws Exception
      */
-    private static function initShape($shapeName): ?Shape
+    public static function getShape($shapeName): ?Pattern
     {
         switch ($shapeName) {
             case 'star':
@@ -34,32 +35,5 @@ class ShapeHelper
             default:
                 return null;
         }
-    }
-
-    /**
-     * Create a shape by name and size
-     *
-     * @param $shapeName
-     * @param $shapeSize
-     * @return Shape|null
-     * @throws Exception
-     */
-    public static function getShape($shapeName, $shapeSize): ?Shape
-    {
-        $shape = self::initShape($shapeName);
-        $sizes = array_keys(self::SIZE);
-
-        if (!$shape) {
-            return null;
-        }
-
-        // if the shape size was not specified or it is not within acceptable sizes, select one randomly
-        if (!$shapeSize || !in_array($shapeSize, $sizes, true)) {
-            $shapeSize = $sizes[random_int(0, count($sizes) - 1)];
-        }
-
-        $shape->setSize($shapeSize);
-
-        return $shape;
     }
 }
