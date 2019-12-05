@@ -9,13 +9,20 @@ use Exception;
 
 class ShapeHelper
 {
+    // acceptable sizes and number of lines
     public const SIZE = [
         'S' => 5,
         'M' => 7,
-        'L' => 11
+        'L' => 11,
     ];
 
-    private static function getShape($shapeName): ?Shape
+    /**
+     * Init the shape by name
+     *
+     * @param $shapeName
+     * @return Shape|null
+     */
+    private static function initShape($shapeName): ?Shape
     {
         switch ($shapeName) {
             case 'star':
@@ -35,16 +42,16 @@ class ShapeHelper
      * @return Shape|null
      * @throws Exception
      */
-    public static function initShape($shapeName, $shapeSize): ?Shape
+    public static function getShape($shapeName, $shapeSize): ?Shape
     {
-        $shape = self::getShape($shapeName);
+        $shape = self::initShape($shapeName);
         $sizes = array_keys(self::SIZE);
 
         if (!$shape) {
             return null;
         }
 
-        // if the shape size was not specified, select one randomly
+        // if the shape size was not specified or it is not within acceptable sizes, select one randomly
         if (!$shapeSize || !in_array($shapeSize, $sizes, true)) {
             $shapeSize = $sizes[random_int(0, count($sizes) - 1)];
         }

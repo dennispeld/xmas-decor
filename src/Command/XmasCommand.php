@@ -30,7 +30,7 @@ class XmasCommand extends Command
         $shapeSize = $input->getOption('size');
 
         try {
-            $shape = ShapeHelper::initShape($shapeName, $shapeSize);
+            $shape = ShapeHelper::getShape($shapeName, $shapeSize);
         } catch (Exception $e) {
             $output->writeln('The shape could not be initialized.');
 

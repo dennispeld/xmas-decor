@@ -19,7 +19,7 @@ class XmasController extends AbstractController
      */
     public function getXmasShape($shapeName, $shapeSize): Response
     {
-        $shape = ShapeHelper::initShape($shapeName, $shapeSize);
+        $shape = ShapeHelper::getShape($shapeName, $shapeSize);
         $sizes = array_keys(ShapeHelper::SIZE);
 
         if (!$shape) {
