@@ -45,6 +45,8 @@ class Tree implements Pattern
                     10 => [[' ' => 1], ['X' => 17]],
                     11 => [['X' => 19]],
                 ];
+            default:
+                return [];
         }
     }
 }

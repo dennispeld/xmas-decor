@@ -45,6 +45,8 @@ class Star implements Pattern
                     10 => [[' ' => 8], ['X' => 1]],
                     11 => [[' ' => 8], ['+' => 1]],
                 ];
+            default:
+                return [];
         }
     }
 }

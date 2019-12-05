@@ -28,6 +28,8 @@ class Notes implements Pattern
                     9 => [['X' => 4], [' ' => 3], ['X' => 2], [' ' => 1]],
                     10 => [[' ' => 1], ['X' => 2], [' ' => 7]],
                 ];
+            default:
+                return [];
         }
     }
 }
