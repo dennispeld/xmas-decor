@@ -38,14 +38,14 @@ class ShapeHelper
     public static function initShape($shapeName, $shapeSize): ?Shape
     {
         $shape = self::getShape($shapeName);
+        $sizes = array_keys(self::SIZE);
 
         if (!$shape) {
             return null;
         }
 
         // if the shape size was not specified, select one randomly
-        if (!$shapeSize) {
-            $sizes = array_keys(self::SIZE);
+        if (!$shapeSize || !in_array($shapeSize, $sizes, true)) {
             $shapeSize = $sizes[random_int(0, count($sizes) - 1)];
         }
 

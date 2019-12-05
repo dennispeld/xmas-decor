@@ -20,6 +20,7 @@ class XmasController extends AbstractController
     public function getXmasShape($shapeName, $shapeSize): Response
     {
         $shape = ShapeHelper::initShape($shapeName, $shapeSize);
+        $sizes = array_keys(ShapeHelper::SIZE);
 
         if (!$shape) {
             $drawing = "The shape '$shapeName' doesn't exist";
@@ -28,9 +29,13 @@ class XmasController extends AbstractController
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 
+        if (!$shapeSize || !in_array($shapeSize, $sizes, true)) {
+            $shapeSize = 'randomly selected';
+        }
+
         return $this->render('xmas/shape.html.twig', [
             'shapeName' => $shapeName,
-            'shapeSize' => $shapeSize === 0 ? 'randomly selected' : $shapeSize,
+            'shapeSize' => $shapeSize,
             'shape' => $drawing,
         ]);
     }
