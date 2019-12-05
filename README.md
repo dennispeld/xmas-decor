@@ -33,24 +33,24 @@ having an easy way of faking user input in the code is enough.
 - cd to the root of the project
 - type the following command:  
 `php bin/console xmas tree --size=L`  
-You can use either 'tree' or 'star', the size could me S, M or L. 
-The --size parameter is optional, if it is not specified, it will be selected randomly.
+You can use either **tree** or **star**, the size could me **S**, **M** or **L**.  
+The **--size** parameter is optional, if it is not specified, it will be selected randomly.
 - try to write a shape, that doesn't exist, for example  
 `php bin/console xmas bell`
-- try to write a size, that doesn't exist
+- try to write a size, that doesn't exist  
 `php bin/console xmas tree --size=XXL`
 
 ### Testing the browser part
-- open your browser and go to
+- open your browser and go to  
 `http://127.0.0.1:8000/xmas/tree/L`  
-You can use either 'tree' or 'star', the size could me S, M or L.  
+You can use either **tree** or **star**, the size could me **S**, **M** or **L**.  
 The last parameter (size) is optional, if it is not specified, it will be selected randomly.
 - try to write a shape, that doesn't exist, for example  
 `http://127.0.0.1:8000/xmas/bell`
-- try to write a size, that doesn't exist
+- try to write a size, that doesn't exist  
 `http://127.0.0.1:8000/xmas/tree/XXL`
 
-Author: Dennis Peld  
-Language & Framework: PHP 7.4, Symfony 5  
-Server: Homestead (Vagrant)
-Environment: JetBrains PHPStorm 2019.3
+**Author**: Dennis Peld  
+**Language & Framework**: PHP 7.4, Symfony 5  
+**Server**: Homestead (Vagrant)  
+**Environment**: JetBrains PHPStorm 2019.3
