@@ -50,6 +50,10 @@ The last parameter (size) is optional, if it is not specified, it will be select
 - try to write a size, that doesn't exist  
 `http://127.0.0.1:8000/xmas/tree/XXL`
 
+### Run unit tests
+`php bin/phpunit`
+
+### Author and tools
 **Author**: Dennis Peld  
 **Language & Framework**: PHP 7.4, Symfony 5  
 **Server**: Homestead (Vagrant)  
