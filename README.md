@@ -87,18 +87,23 @@ root
 **Description**  
 First, I created **StarPattern** and **TreePattern** classes, which implements the **Pattern** interface, and have only 
 one function `get()` that retrieves the pattern.  
+
 I also created a class **Shape**, that has pattern and size properties and use `getPattern()` function.  
 Two helpers, **ShapeBuilder** and **ShapeDrawer** have the business logic, which is used in both console and browser 
 parts of the application. In **ShapeBuilder**, I initialize the shape by retrieving a pattern and specifying the size.
 In **ShapeDrawer**, in the `draw()` function, I am building a drawing as an array, in which each value is a line of the 
 shape.  
+
 Now, for a console part of the application, I created a **XmasCommand**, that configures the new CLI command `xmas` with 
 attribute `name` and optional parameter `size`. In `execute()` action I am getting the specified attribute and an 
-optional parameter and pass them to init and draw the shape using **ShapeBuilder** and **ShapeDrawer**.  
+optional parameter and pass them to init and draw the shape using **ShapeBuilder** and **ShapeDrawer**.    
+
 Finally, for a browser part of the application, I created a **XmasController**, that has `getXmasShape()` function with
 a route in the annotation, which should be in the format `/xmas/name/size`. I pass the parameters `name` and `size` to 
 init and get the drawing of the shape using **ShapeBuilder** and **ShapeDrawer**. The drawing I later render into a 
-`xmas/shape.html.twig` view. 
+`xmas/shape.html.twig` view.    
+
+In addition, I have added unit and functional tests under `tests/` folder. 
 
 ### Author and tools
 **Author**: Dennis Peld  
