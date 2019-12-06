@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Shapes\CloverPattern;
 use App\Shapes\NotesPattern;
 use App\Shapes\Pattern;
 use App\Shapes\StarPattern;
@@ -35,6 +36,8 @@ class ShapeBuilder
                 return new TreePattern($size);
             case 'notes':
                 return new NotesPattern($size);
+            case 'clover':
+                return new CloverPattern($size);
             default:
                 return null;
         }
