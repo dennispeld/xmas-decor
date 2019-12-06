@@ -4,21 +4,15 @@ namespace App\Shapes;
 
 class TreePattern implements Pattern
 {
-    private string $size;
-
-    public function __construct($size)
-    {
-        $this->size = $size;
-    }
-
     /**
      * Get the pattern of Tree shape
      *
+     * @param string $size
      * @return array
      */
-    public function get(): array
+    public function get($size): array
     {
-        switch ($this->size) {
+        switch ($size) {
             case 'S':
                 return [
                     1 => [[' ' => 3], ['+' => 1]],

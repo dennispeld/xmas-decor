@@ -29,16 +29,16 @@ class ShapeBuilder
 
         switch ($name) {
             case 'star':
-                $pattern = new StarPattern($size);
+                $pattern = new StarPattern();
                 break;
             case 'tree':
-                $pattern = new TreePattern($size);
+                $pattern = new TreePattern();
                 break;
             default:
                 return null;
         }
 
-        return new Shape($pattern);
+        return new Shape($pattern, $size);
     }
 
     /**

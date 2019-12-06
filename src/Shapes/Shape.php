@@ -5,10 +5,12 @@ namespace App\Shapes;
 class Shape
 {
     private Pattern $pattern;
+    private string $size;
 
-    public function __construct(Pattern $pattern)
+    public function __construct(Pattern $pattern, string $size)
     {
         $this->pattern = $pattern;
+        $this->size = $size;
     }
 
     /**
@@ -18,6 +20,6 @@ class Shape
      */
     public function getPattern(): array
     {
-        return $this->pattern->get();
+        return $this->pattern->get($this->size);
     }
 }
