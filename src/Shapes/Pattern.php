@@ -4,5 +4,5 @@ namespace App\Shapes;
 
 interface Pattern
 {
-    public function get($size): array;
+    public function get(): array;
 }

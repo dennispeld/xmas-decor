@@ -4,15 +4,21 @@ namespace App\Shapes;
 
 class StarPattern implements Pattern
 {
+    private string $size;
+
+    public function __construct($size)
+    {
+        $this->size = $size;
+    }
+
     /**
      * Get the pattern of Star shape
      *
-     * @param string $size
      * @return array
      */
-    public function get($size): array
+    public function get(): array
     {
-        switch ($size) {
+        switch ($this->size) {
             case 'S':
                 return [
                     1 => [[' ' => 3], ['+' => 1]],

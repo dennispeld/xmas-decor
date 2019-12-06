@@ -4,15 +4,21 @@ namespace App\Shapes;
 
 class NotesPattern implements Pattern
 {
+    private string $size;
+
+    public function __construct($size)
+    {
+        $this->size = $size;
+    }
+
     /**
      * Get the pattern of Notes shape
      *
-     * @param string $size
      * @return array
      */
-    public function get($size): array
+    public function get(): array
     {
-        switch ($size) {
+        switch ($this->size) {
             case 'S':
             case 'M':
             case 'L':

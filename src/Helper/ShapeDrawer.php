@@ -11,21 +11,14 @@ class ShapeDrawer
      * Draw a shape according to its size
      *
      * @param Pattern $pattern
-     * @param string $size
      * @return array
      * @throws Exception
      */
-    public static function draw($pattern, $size): array
+    public static function draw($pattern): array
     {
         $drawing = [];
-        $sizes = array_keys(ShapeBuilder::SIZE);
 
-        // if the shape size was not specified or it is not within acceptable sizes, select one randomly
-        if (!$size || !in_array($size, $sizes, true)) {
-            $size = $sizes[random_int(0, count($sizes) - 1)];
-        }
-
-        $patternLines = $pattern->get($size);
+        $patternLines = $pattern->get();
 
         // get through each line in the pattern array
         for ($line = 1, $lineMax = count($patternLines); $line <= $lineMax; $line ++) {

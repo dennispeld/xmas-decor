@@ -29,10 +29,9 @@ class XmasCommand extends Command
     {
         $shape = $input->getArgument('shape');
         $size = $input->getOption('size');
-        $size = strtoupper($size);
 
         try {
-            $pattern = ShapeBuilder::initShapePattern($shape);
+            $pattern = ShapeBuilder::initShapePattern($shape, $size);
         } catch (Exception $e) {
             $output->writeln('The shape could not be initialized.');
 
@@ -46,7 +45,7 @@ class XmasCommand extends Command
         }
 
         try {
-            $drawing = ShapeDrawer::draw($pattern, $size);
+            $drawing = ShapeDrawer::draw($pattern);
         } catch (Exception $e) {
             $output->writeln('The shape could not be drawn.');
 
