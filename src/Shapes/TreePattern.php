@@ -2,7 +2,7 @@
 
 namespace App\Shapes;
 
-class Tree implements Pattern
+class TreePattern implements Pattern
 {
     /**
      * Get the pattern of Tree shape

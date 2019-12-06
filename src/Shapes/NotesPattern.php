@@ -2,7 +2,7 @@
 
 namespace App\Shapes;
 
-class Notes implements Pattern
+class NotesPattern implements Pattern
 {
     /**
      * Get the pattern of Notes shape

@@ -4,7 +4,7 @@
     <h1>Xmas Shapes</h1>
 
     {% block content %}
-        <p>Drawing a <strong>{{ shapeName }}</strong>, size <strong>{{ shapeSize }}</strong>.</p>
-        <p>{{ shape|raw|nl2br }}</p>
+        <p>Drawing a <strong>{{ shape }}</strong>, size <strong>{{ size }}</strong>.</p>
+        <p>{{ drawing|raw|nl2br }}</p>
     {% endblock %}
 {% endblock %}

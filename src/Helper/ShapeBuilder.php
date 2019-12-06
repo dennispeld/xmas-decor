@@ -2,10 +2,10 @@
 
 namespace App\Helper;
 
-use App\Shapes\Notes;
+use App\Shapes\NotesPattern;
 use App\Shapes\Pattern;
-use App\Shapes\Star;
-use App\Shapes\Tree;
+use App\Shapes\StarPattern;
+use App\Shapes\TreePattern;
 use Exception;
 
 class ShapeBuilder
@@ -17,21 +17,21 @@ class ShapeBuilder
     ];
 
     /**
-     * Initialize a shape
+     * Initialize a shape pattern
      *
-     * @param $shapeName
+     * @param $name
      * @return Pattern|null
      * @throws Exception
      */
-    public static function initShape($shapeName): ?Pattern
+    public static function initShapePattern($name): ?Pattern
     {
-        switch ($shapeName) {
+        switch ($name) {
             case 'star':
-                return new Star();
+                return new StarPattern();
             case 'tree':
-                return new Tree();
+                return new TreePattern();
             case 'notes':
-                return new Notes();
+                return new NotesPattern();
             default:
                 return null;
         }

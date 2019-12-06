@@ -2,7 +2,7 @@
 
 namespace App\Shapes;
 
-class Star implements Pattern
+class StarPattern implements Pattern
 {
     /**
      * Get the pattern of Star shape

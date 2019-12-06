@@ -12,33 +12,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class XmasController extends AbstractController
 {
     /**
-     * @Route("/xmas/{shapeName}/{shapeSize}", defaults={"shapeSize" = 0}, name="xmas_shape")
-     * @param $shapeName
-     * @param $shapeSize
+     * @Route("/xmas/{shape}/{size}", defaults={"size" = 0}, name="xmas_shape")
+     * @param $shape
+     * @param $size
      * @return Response
      * @throws Exception
      */
-    public function getXmasShape($shapeName, $shapeSize): Response
+    public function getXmasShape($shape, $size): Response
     {
-        $shape = ShapeBuilder::initShape($shapeName);
+        $pattern = ShapeBuilder::initShapePattern($shape);
+        $size = strtoupper($size);
         $sizes = array_keys(ShapeBuilder::SIZE);
-        $shapeSize = strtoupper($shapeSize);
 
-        if (!$shape) {
-            $drawing = "The shape '$shapeName' doesn't exist";
+        if (!$pattern) {
+            $drawing = "The shape '$shape' doesn't exist";
         } else {
-            $drawing = implode("\r\n", ShapeDrawer::draw($shape, $shapeSize));
+            $drawing = implode("\r\n", ShapeDrawer::draw($pattern, $size));
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 
-        if (!$shapeSize || !in_array($shapeSize, $sizes, true)) {
-            $shapeSize = 'randomly selected';
+        if (!$size || !in_array($size, $sizes, true)) {
+            $size = 'randomly selected';
         }
 
         return $this->render('xmas/shape.html.twig', [
-            'shapeName' => $shapeName,
-            'shapeSize' => $shapeSize,
-            'shape' => $drawing,
+            'shape' => $shape,
+            'size' => $size,
+            'drawing' => $drawing,
         ]);
     }
 }

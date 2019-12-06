@@ -27,25 +27,31 @@ class XmasCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $shapeName = $input->getArgument('shape');
-        $shapeSize = $input->getOption('size');
-        $shapeSize = strtoupper($shapeSize);
+        $shape = $input->getArgument('shape');
+        $size = $input->getOption('size');
+        $size = strtoupper($size);
 
         try {
-            $shape = ShapeBuilder::initShape($shapeName);
+            $pattern = ShapeBuilder::initShapePattern($shape);
         } catch (Exception $e) {
-            $output->writeln('The shape could not be initialized.' . $e->getMessage() . $e->getTrace());
+            $output->writeln('The shape could not be initialized.');
 
             return 0;
         }
 
-        if (!$shape) {
-            $output->writeln("The shape '$shapeName' doesn't exist");
+        if (!$pattern) {
+            $output->writeln("The shape '$shape' doesn't exist");
 
             return 0;
         }
 
-        $drawing = ShapeDrawer::draw($shape, $shapeSize);
+        try {
+            $drawing = ShapeDrawer::draw($pattern, $size);
+        } catch (Exception $e) {
+            $output->writeln('The shape could not be drawn.');
+
+            return 0;
+        }
 
         $output->writeln($drawing);
 
