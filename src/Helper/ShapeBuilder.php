@@ -2,8 +2,6 @@
 
 namespace App\Helper;
 
-use App\Shapes\CloverPattern;
-use App\Shapes\NotesPattern;
 use App\Shapes\Pattern;
 use App\Shapes\StarPattern;
 use App\Shapes\TreePattern;
@@ -34,23 +32,19 @@ class ShapeBuilder
                 return new StarPattern($size);
             case 'tree':
                 return new TreePattern($size);
-            case 'notes':
-                return new NotesPattern($size);
-            case 'clover':
-                return new CloverPattern($size);
             default:
                 return null;
         }
     }
 
     /**
-     * Initialize the size of a shape
+     * Initialize the size of a shape: formats if exists, picks a random one if doesn't exist
      *
-     * @param $size
-     * @return string|null
+     * @param string|null $size
+     * @return string
      * @throws Exception
      */
-    private static function initShapeSize($size): ?string
+    private static function initShapeSize($size): string
     {
         $size = strtoupper($size);
         $sizes = array_keys(self::SIZE);
