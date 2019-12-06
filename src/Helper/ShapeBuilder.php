@@ -48,7 +48,7 @@ class ShapeBuilder
      * @return string
      * @throws Exception
      */
-    private static function initSize($size): string
+    public static function initSize($size): string
     {
         $size = strtoupper($size);
         $sizes = array_keys(self::SIZE);

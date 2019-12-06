@@ -47,6 +47,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/browser-kit": {
+        "version": "v5.0.1"
+    },
     "symfony/cache": {
         "version": "v5.0.1"
     },
@@ -69,7 +72,13 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v5.0.1"
+    },
     "symfony/dependency-injection": {
+        "version": "v5.0.1"
+    },
+    "symfony/dom-crawler": {
         "version": "v5.0.1"
     },
     "symfony/dotenv": {
