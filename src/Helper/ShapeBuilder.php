@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Shapes\Pattern;
+use App\Shapes\Shape;
 use App\Shapes\StarPattern;
 use App\Shapes\TreePattern;
 use Exception;
@@ -16,25 +16,29 @@ class ShapeBuilder
     ];
 
     /**
-     * Initialize a shape pattern
+     * Initialize a shape
      *
      * @param string $name
      * @param string|null $size
-     * @return Pattern|null
+     * @return array|null
      * @throws Exception
      */
-    public static function initShapePattern($name, $size): ?Pattern
+    public static function initShape($name, $size): ?Shape
     {
-        $size = self::initShapeSize($size);
+        $size = self::initSize($size);
 
         switch ($name) {
             case 'star':
-                return new StarPattern($size);
+                $pattern = new StarPattern($size);
+                break;
             case 'tree':
-                return new TreePattern($size);
+                $pattern = new TreePattern($size);
+                break;
             default:
                 return null;
         }
+
+        return new Shape($pattern);
     }
 
     /**
@@ -44,7 +48,7 @@ class ShapeBuilder
      * @return string
      * @throws Exception
      */
-    private static function initShapeSize($size): string
+    private static function initSize($size): string
     {
         $size = strtoupper($size);
         $sizes = array_keys(self::SIZE);

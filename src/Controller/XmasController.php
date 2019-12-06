@@ -12,20 +12,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class XmasController extends AbstractController
 {
     /**
-     * @Route("/xmas/{shape}/{size}", defaults={"size" = 0}, name="xmas_shape")
-     * @param string $shape
+     * @Route("/xmas/{name}/{size}", defaults={"size" = 0}, name="xmas_shape")
+     * @param string $name
      * @param string|null $size
      * @return Response
      * @throws Exception
      */
-    public function getXmasShape($shape, $size): Response
+    public function getXmasShape($name, $size): Response
     {
-        $pattern = ShapeBuilder::initShapePattern($shape, $size);
+        $drawing = '';
+        $error = '';
 
-        if (!$pattern) {
-            $drawing = "The shape '$shape' doesn't exist";
+        $shape = ShapeBuilder::initShape($name, $size);
+
+        if (!$shape) {
+            $error = "The shape '$name' doesn't exist";
         } else {
-            $drawing = implode("\r\n", ShapeDrawer::draw($pattern));
+            $drawing = implode("\r\n", ShapeDrawer::draw($shape));
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 
@@ -34,9 +37,10 @@ class XmasController extends AbstractController
         }
 
         return $this->render('xmas/shape.html.twig', [
-            'shape' => $shape,
+            'shape' => $name,
             'size' => $size,
             'drawing' => $drawing,
+            'error' => $error,
         ]);
     }
 }

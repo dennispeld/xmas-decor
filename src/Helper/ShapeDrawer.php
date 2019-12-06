@@ -2,27 +2,27 @@
 
 namespace App\Helper;
 
-use App\Shapes\Pattern;
+use App\Shapes\Shape;
 use Exception;
 
 class ShapeDrawer
 {
     /**
-     * Draw a shape according to its size
+     * Draw a shape by its size
      *
-     * @param Pattern $pattern
+     * @param Shape $shape
      * @return array
      * @throws Exception
      */
-    public static function draw($pattern): array
+    public static function draw($shape): array
     {
         $drawing = [];
 
-        $patternLines = $pattern->get();
+        $pattern = $shape->getPattern();
 
         // get through each line in the pattern array
-        for ($line = 1, $lineMax = count($patternLines); $line <= $lineMax; $line ++) {
-            $drawing[] = self::drawLine($patternLines[$line]);
+        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
+            $drawing[] = self::drawLine($pattern[$line]);
         }
 
         return $drawing;

@@ -17,7 +17,7 @@ class XmasCommand extends Command
     {
         $this->setName('xmas')
             ->setDescription('Draw a christmas shape.')
-            ->addArgument('shape', InputArgument::REQUIRED, 'The shape to be drawn.')
+            ->addArgument('name', InputArgument::REQUIRED, 'The name of the shape to be drawn.')
             ->addOption(
                 'size',
                 null,
@@ -27,25 +27,25 @@ class XmasCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $shape = $input->getArgument('shape');
+        $name = $input->getArgument('name');
         $size = $input->getOption('size');
 
         try {
-            $pattern = ShapeBuilder::initShapePattern($shape, $size);
+            $shape = ShapeBuilder::initShape($name, $size);
         } catch (Exception $e) {
             $output->writeln('The shape could not be initialized.');
 
             return 0;
         }
 
-        if (!$pattern) {
-            $output->writeln("The shape '$shape' doesn't exist");
+        if (!$shape) {
+            $output->writeln("The shape '$name' doesn't exist");
 
             return 0;
         }
 
         try {
-            $drawing = ShapeDrawer::draw($pattern);
+            $drawing = ShapeDrawer::draw($shape);
         } catch (Exception $e) {
             $output->writeln('The shape could not be drawn.');
 
