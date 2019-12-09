@@ -16,20 +16,20 @@ class ShapeDrawerTest extends TestCase
      */
     public function testDraw(): void
     {
-        $pattern = new TreePattern('S');
-        $shape = new Shape($pattern);
+        $pattern = new TreePattern();
+        $shape = new Shape($pattern, 5);
         $drawing = ShapeDrawer::draw($shape);
         $drawingLinesNumber = count($drawing);
         $this->assertEquals(5, $drawingLinesNumber);
 
-        $pattern = new TreePattern('M');
-        $shape = new Shape($pattern);
+        $pattern = new TreePattern();
+        $shape = new Shape($pattern, 7);
         $drawing = ShapeDrawer::draw($shape);
         $drawingLinesNumber = count($drawing);
         $this->assertEquals(7, $drawingLinesNumber);
 
-        $pattern = new StarPattern('L');
-        $shape = new Shape($pattern);
+        $pattern = new StarPattern();
+        $shape = new Shape($pattern,11);
         $drawing = ShapeDrawer::draw($shape);
         $drawingLinesNumber = count($drawing);
         $this->assertEquals(11, $drawingLinesNumber);

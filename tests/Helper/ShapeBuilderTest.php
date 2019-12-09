@@ -30,14 +30,14 @@ class ShapeBuilderTest extends TestCase
     {
         // size exists
         $shapeSizeS = ShapeBuilder::initSize('S');
-        $this->assertEquals('S', $shapeSizeS);
+        $this->assertEquals(5, $shapeSizeS);
 
         // size doesnt exist, but initSize should pick a random one
         $shapeSizeXxl = ShapeBuilder::initSize('XXL');
-        $this->assertContains($shapeSizeXxl, ['S', 'M', 'L']);
+        $this->assertContains($shapeSizeXxl, [5, 7, 11]);
 
         // size was not specified, but initSize should pick a random one
         $shapeSizeNull = ShapeBuilder::initSize(null);
-        $this->assertContains($shapeSizeNull, ['S', 'M', 'L']);
+        $this->assertContains($shapeSizeNull, [5, 7, 11]);
     }
 }
