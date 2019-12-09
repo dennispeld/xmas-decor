@@ -1,10 +1,4 @@
 <?php
-/**
- * The file TreePatternTest.php is subject to the terms and conditions defined
- * in 'LICENSE.txt', which is part of the source code package.
- *
- * Copyright (c) 2019. Buncha Services UG
- */
 
 namespace App\Tests\Shapes;
 
