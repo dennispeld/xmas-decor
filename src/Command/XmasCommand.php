@@ -22,7 +22,7 @@ class XmasCommand extends Command
                 'size',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Set the size of the shape (S, M, L).');
+                'Set the size of the shape.');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int

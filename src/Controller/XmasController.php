@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Helper\ShapeDrawer;
 use App\Helper\ShapeBuilder;
+use App\Shapes\ShapeSettings;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class XmasController extends AbstractController
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 
-        if (!$size || !in_array($size, ShapeBuilder::SIZE, false)) {
+        if (!$size || !in_array($size, ShapeSettings::AVAILABLE_SIZES, false)) {
             $size = 'randomly selected';
         }
 

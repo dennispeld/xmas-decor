@@ -3,19 +3,13 @@
 namespace App\Helper;
 
 use App\Shapes\Shape;
+use App\Shapes\ShapeSettings;
 use App\Shapes\StarPattern;
 use App\Shapes\TreePattern;
 use Exception;
 
 class ShapeBuilder
 {
-    public const SIZE = [
-        5 => 'small',
-        7 => 'medium',
-        11 => 'large',
-        15 => 'extra-large'
-    ];
-
     /**
      * Initialize a shape
      *
@@ -51,11 +45,11 @@ class ShapeBuilder
      */
     public static function initSize($size): int
     {
-        $lines = array_search($size, self::SIZE, false);
+        $lines = array_search($size, ShapeSettings::AVAILABLE_SIZES, true);
 
         // if the shape size was not specified or it is not within acceptable sizes, select one randomly
         if (!$lines) {
-            $possibleLines = array_keys(self::SIZE);
+            $possibleLines = array_keys(ShapeSettings::AVAILABLE_SIZES);
 
             return $possibleLines[array_rand($possibleLines)];
         }
