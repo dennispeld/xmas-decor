@@ -4,11 +4,11 @@
     <h1>Xmas Shapes</h1>
 
     {% block content %}
-        {% if not error %}
+        {% if not message %}
             <p>Drawing a <strong>{{ shape }}</strong>, size <strong>{{ size }}</strong>.</p>
             <p>{{ drawing|raw|nl2br }}</p>
         {% else %}
-            <p>{{ error|raw|nl2br }}</p>
+            <p>{{ message|raw|nl2br }}</p>
         {% endif %}
     {% endblock %}
 {% endblock %}

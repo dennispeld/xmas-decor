@@ -8,7 +8,6 @@ abstract class ShapeSettings
         5 => 'S',
         7 => 'M',
         11 => 'L',
-        15 => 'XXL',
     ];
 
     public const AVAILABLE_CHARACTERS = [

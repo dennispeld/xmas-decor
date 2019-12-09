@@ -21,31 +21,35 @@ class XmasController extends AbstractController
      */
     public function getXmasShape($name, $size): Response
     {
-        $drawing = '';
-        $error = '';
+        if (!in_array($size, ShapeSettings::AVAILABLE_SIZES, false)) {
+            $availableSizes = implode(', ', ShapeSettings::AVAILABLE_SIZES);
+            $error = "The size '$size' is not allowed. Available sizes: $availableSizes.";
+
+            return $this->render('xmas/error.html.twig', [
+                'error' => $error,
+            ]);
+        }
 
         $shape = ShapeBuilder::initShape($name, $size);
 
         if (!$shape) {
             $error = "The shape '$name' doesn't exist";
-        } else {
-            $drawing = implode("\r\n", ShapeDrawer::draw($shape));
-            $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
+
+            return $this->render('xmas/error.html.twig', [
+                'error' => $error,
+            ]);
         }
 
-        if (!$size || !in_array($size, ShapeSettings::AVAILABLE_SIZES, false)) {
-            $size = 'randomly selected';
-        }
-
-        if (empty($drawing)) {
-            $error = "The shape '$name' doesn't have the pattern for the selected size.";
-        }
+        $size = $size ?: 'randomly selected';
+        $drawing = implode("\r\n", ShapeDrawer::draw($shape));
+        $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
+        $message = !empty($drawing) ? '' : "The shape '$name' doesn't have the pattern for this size.";
 
         return $this->render('xmas/shape.html.twig', [
             'shape' => $name,
             'size' => $size,
             'drawing' => $drawing,
-            'error' => $error,
+            'message' => $message,
         ]);
     }
 }

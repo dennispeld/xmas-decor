@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Helper\ShapeDrawer;
 use App\Helper\ShapeBuilder;
+use App\Shapes\ShapeSettings;
 use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -30,36 +31,32 @@ class XmasCommand extends Command
         $name = $input->getArgument('name');
         $size = $input->getOption('size');
 
+        if ($size && !in_array($size, ShapeSettings::AVAILABLE_SIZES, false)) {
+            $availableSizes = implode(', ', ShapeSettings::AVAILABLE_SIZES);
+            $output->writeln("The size '$size' is not allowed. Available sizes: $availableSizes.");
+
+            return 0;
+        }
+
         try {
             $shape = ShapeBuilder::initShape($name, $size);
-        } catch (Exception $e) {
-            $output->writeln('The shape could not be initialized.');
 
-            return 0;
-        }
+            if (!$shape) {
+                $output->writeln("The shape '$name' doesn't exist");
+            }
 
-        if (!$shape) {
-            $output->writeln("The shape '$name' doesn't exist");
-
-            return 0;
-        }
-
-        try {
             $drawing = ShapeDrawer::draw($shape);
+
+            if (empty($drawing)) {
+                $output->writeln("The shape '$name' doesn't have the pattern for this size.");
+            } else {
+                $output->writeln($drawing);
+            }
+
         } catch (Exception $e) {
             $output->writeln('The shape could not be drawn.');
-
+        } finally {
             return 0;
         }
-
-        if (empty($drawing)) {
-            $output->writeln("The shape '$name' doesn't have the pattern for the selected size.");
-
-            return 0;
-        }
-
-        $output->writeln($drawing);
-
-        return 0;
     }
 }

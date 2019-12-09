@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Xmas Shapes - Error</h1>
+
+    {% block content %}
+        <p>{{ error|raw|nl2br }}</p>
+    {% endblock %}
+{% endblock %}
