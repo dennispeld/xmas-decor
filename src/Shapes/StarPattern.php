@@ -7,13 +7,13 @@ class StarPattern implements Pattern
     /**
      * Get the pattern of Star shape
      *
-     * @param string $size
+     * @param int $size
      * @return array
      */
     public function get($size): array
     {
         switch ($size) {
-            case 'S':
+            case 5:
                 return [
                     1 => [[' ' => 3], ['+' => 1]],
                     2 => [[' ' => 3], ['X' => 1]],
@@ -21,7 +21,7 @@ class StarPattern implements Pattern
                     4 => [[' ' => 3], ['X' => 1]],
                     5 => [[' ' => 3], ['+' => 1]],
                 ];
-            case 'M':
+            case 7:
                 return [
                     1 => [[' ' => 5], ['+' => 1]],
                     2 => [[' ' => 5], ['X' => 1]],
@@ -31,7 +31,7 @@ class StarPattern implements Pattern
                     6 => [[' ' => 5], ['X' => 1]],
                     7 => [[' ' => 5], ['+' => 1]],
                 ];
-            case 'L':
+            case 11:
                 return [
                     1 => [[' ' => 8], ['+' => 1]],
                     2 => [[' ' => 8], ['X' => 1]],

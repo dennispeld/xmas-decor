@@ -10,16 +10,17 @@ use Exception;
 class ShapeBuilder
 {
     public const SIZE = [
-        'S' => 5,
-        'M' => 7,
-        'L' => 11,
+        5 => 'small',
+        7 => 'medium',
+        11 => 'large',
+        15 => 'extra-large'
     ];
 
     /**
      * Initialize a shape
      *
      * @param string $name
-     * @param string|null $size
+     * @param int|null $size
      * @return array|null
      * @throws Exception
      */
@@ -45,19 +46,20 @@ class ShapeBuilder
      * Initialize the size of a shape: formats if exists, picks a random one if doesn't exist
      *
      * @param string|null $size
-     * @return string
+     * @return int
      * @throws Exception
      */
-    public static function initSize($size): string
+    public static function initSize($size): int
     {
-        $size = strtoupper($size);
-        $sizes = array_keys(self::SIZE);
+        $lines = array_search($size, self::SIZE, false);
 
         // if the shape size was not specified or it is not within acceptable sizes, select one randomly
-        if (!$size || !array_key_exists($size, self::SIZE)) {
-            $size = $sizes[random_int(0, count($sizes) - 1)];
+        if (!$lines) {
+            $possibleLines = array_keys(self::SIZE);
+
+            return $possibleLines[array_rand($possibleLines)];
         }
 
-        return $size;
+        return $lines;
     }
 }

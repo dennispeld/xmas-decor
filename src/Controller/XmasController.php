@@ -32,8 +32,12 @@ class XmasController extends AbstractController
             $drawing = str_replace(' ', '&ensp;&nbsp;', $drawing);
         }
 
-        if (!$size || !array_key_exists($size, ShapeBuilder::SIZE)) {
+        if (!$size || !in_array($size, ShapeBuilder::SIZE, false)) {
             $size = 'randomly selected';
+        }
+
+        if (empty($drawing)) {
+            $error = "The shape '$name' doesn't have the pattern for the selected size.";
         }
 
         return $this->render('xmas/shape.html.twig', [

@@ -20,12 +20,16 @@ class ShapeDrawer
 
         $pattern = $shape->getPattern();
 
-        // get through each line in the pattern array
-        for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
-            $drawing[] = self::drawLine($pattern[$line]);
+        if (count($pattern) > 0){
+            // get through each line in the pattern array
+            for ($line = 1, $lineMax = count($pattern); $line <= $lineMax; $line ++) {
+                $drawing[] = self::drawLine($pattern[$line]);
+            }
+
+            return $drawing;
         }
 
-        return $drawing;
+        return [];
     }
 
     /**

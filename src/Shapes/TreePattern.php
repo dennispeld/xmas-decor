@@ -7,13 +7,13 @@ class TreePattern implements Pattern
     /**
      * Get the pattern of Tree shape
      *
-     * @param string $size
+     * @param int $size
      * @return array
      */
     public function get($size): array
     {
         switch ($size) {
-            case 'S':
+            case 5:
                 return [
                     1 => [[' ' => 3], ['+' => 1]],
                     2 => [[' ' => 3], ['X' => 1]],
@@ -21,7 +21,7 @@ class TreePattern implements Pattern
                     4 => [[' ' => 1], ['X' => 5]],
                     5 => [['X' => 7]],
                 ];
-            case 'M':
+            case 7:
                 return [
                     1 => [[' ' => 5], ['+' => 1]],
                     2 => [[' ' => 5], ['X' => 1]],
@@ -31,7 +31,7 @@ class TreePattern implements Pattern
                     6 => [[' ' => 1], ['X' => 9]],
                     7 => [['X' => 11]],
                 ];
-            case 'L':
+            case 11:
                 return [
                     1 => [[' ' => 9], ['+' => 1]],
                     2 => [[' ' => 9], ['X' => 1]],

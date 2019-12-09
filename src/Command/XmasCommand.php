@@ -52,6 +52,12 @@ class XmasCommand extends Command
             return 0;
         }
 
+        if (empty($drawing)) {
+            $output->writeln("The shape '$name' doesn't have the pattern for the selected size.");
+
+            return 0;
+        }
+
         $output->writeln($drawing);
 
         return 0;

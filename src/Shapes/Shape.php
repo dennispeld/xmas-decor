@@ -5,9 +5,9 @@ namespace App\Shapes;
 class Shape
 {
     private Pattern $pattern;
-    private string $size;
+    private int $size;
 
-    public function __construct(Pattern $pattern, string $size)
+    public function __construct(Pattern $pattern, int $size)
     {
         $this->pattern = $pattern;
         $this->size = $size;
